@@ -1,0 +1,12 @@
+---
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /storage/homeassistant/config:/config
+    network:
+      - host
+    restart: unless-stopped
