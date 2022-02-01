@@ -9,8 +9,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - /storage/syncthing/config:/config
-      - /storage/syncthing/data:/data
+      - /syncthing/config:/config
+      - /syncthing/data:/data
     ports:
       - 8384:8384
       - 22000:22000/tcp

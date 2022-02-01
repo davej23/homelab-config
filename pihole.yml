@@ -11,7 +11,7 @@ services:
       - NET_ADMIN
     networks:
       macvlan0: # same as network specified below
-        ipv4_address: 192.168.0.199 # the IP of the pihole container
+        ipv4_address: 192.168.0.201 # the IP of the pihole container
     dns:
       - 127.0.0.1 # use local DNS, since the pihole 
       - 1.1.1.1 # optional fallback DNS
@@ -38,6 +38,6 @@ networks:
       parent: eth0
     ipam:
       config:
-        - subnet: 192.168.0.199/32
+        - subnet: 192.168.0.201/32
           gateway: 192.168.0.1
-          ip_range: 192.168.0.199/32
+          ip_range: 192.168.0.201/32
