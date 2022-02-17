@@ -1,2 +1,2 @@
 sudo apt install docker.io
-sudo docker run --name=pihole -e TZ=Europe/London -e WEBPASSWORD=piholewebpassword -e SERVERIP=192.168.0.195 -v /pihole/pihole:/etc/pihole -v /pihole/dns:/etc/dnsmasq.d -p 80:80 -p 53:53/tcp -p 53:53/udp --restart=unless-stopped pihole/pihole -d
+sudo docker run -d --name=pihole -e TZ=Europe/London -e WEBPASSWORD=piholewebpassword -e SERVERIP=192.168.0.195 -v /pihole/pihole:/etc/pihole -v /pihole/dns:/etc/dnsmasq.d -p 8080:80 -p 53:53/tcp -p 53:53/udp --restart=unless-stopped pihole/pihole
