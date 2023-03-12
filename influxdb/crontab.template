@@ -1,0 +1,2 @@
+# When system boots, run telegraf script
+@reboot /bin/bash /telegraf.sh &
