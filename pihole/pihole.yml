@@ -5,13 +5,13 @@ services:
     container_name: pihole-vlan
     image: pihole/pihole:latest # check the latest version on docker hub.
     hostname: pihole # set an easy hostname to remember
-    domainname: infinita # your local domain name
+    domainname: DOMAIN # your local domain name
     mac_address: de:ad:be:ef:ff:01 # can change or leave this
     cap_add:
       - NET_ADMIN
     networks:
       macvlan0: # same as network specified below
-        ipv4_address: 192.168.0.201 # the IP of the pihole container
+        ipv4_address: PIHOLE_IP # the IP of the pihole container
     dns:
       - 127.0.0.1 # use local DNS, since the pihole 
       - 1.1.1.1 # optional fallback DNS
@@ -25,9 +25,9 @@ services:
        - '/pihole/pihole/:/etc/pihole/'
        - '/pihole/dnsmasq.d/:/etc/dnsmasq.d/'
     environment: # set variables for pihole configuration.
-      ServerIP: 192.168.0.199 # must match ipv4_address above
-      VIRTUAL_HOST: pihole.infinita  # Must be hostname + domainname from above
-      WEBPASSWORD: "piholewebpassword"
+      ServerIP: PIHOLE_IP # must match ipv4_address above
+      VIRTUAL_HOST: HOSTNAME.DOMAIN  # Must be hostname + domainname from above
+      WEBPASSWORD: "PASSWORD"
       TZ: 'Europe/London' # pick your timezone
     restart: unless-stopped
 
@@ -38,6 +38,6 @@ networks:
       parent: eth0
     ipam:
       config:
-        - subnet: 192.168.0.201/32
+        - subnet: PIHOLE_IP/32
           gateway: 192.168.0.1
-          ip_range: 192.168.0.201/32
+          ip_range: PIHOLE_IP/32
