@@ -32,7 +32,7 @@ def update_log(message: str, log_file_path: str):
 update_log('', LOG_FILE)
 
 for backup_folder in os.listdir(BACKUP_DIR):
-    if os.path.isdir(BACKUP_DIR + backup_folder):
+    if os.path.isdir(BACKUP_DIR + backup_folder) and 'backup' in backup_folder:
 
         backup_date_str = backup_folder.split('_')[-1]
         backup_date = datetime.strptime(backup_date_str, '%Y%m%d')
