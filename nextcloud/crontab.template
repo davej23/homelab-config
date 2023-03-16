@@ -1,5 +1,5 @@
 # Clone data to backup location
-0 0 * * * rsync -Aavx NEXTCLOUD_DATADIR BACKUP_DIR/backup_`date +"%Y%m%d"`/
+0 0 * * * /bin/bash nc-backup.sh
 
 # Remove outdated backups
 0 1 * * * python3 remove_outdated_backups.py
