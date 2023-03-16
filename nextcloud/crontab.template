@@ -6,3 +6,6 @@
 
 # Backup database and remove outdated backups
 0 2 * * * python3 backup_db.py "BACKUP_DIR"
+
+# Email notification if backup not successful
+0 3 * * * python3 backup_notifier.py --email GMAIL_EMAIL --backup_dir BACKUP_DIR --app_pw APP_PW

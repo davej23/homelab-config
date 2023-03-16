@@ -18,6 +18,8 @@ When behind CloudFlare Proxy, certificates cannot autorenew. See my other reposi
 
 # Additional Admin Things
 
+**See script usage in `crontab.template` file**
+
 **Backup Nextcloud Data Folder**
 Run `nc-backup.sh` on Nextcloud AIO container host machine, change variables in script to match what is required.
 
@@ -27,3 +29,8 @@ This script uses `rsync` to clone Nextcloud data directory to a user-specified b
 Run `backup_db.py` on Nextcloud AIO container host machine, change variables in script to match what is required.
 
 This script obtains the Nextcloud PostgreSQL database credentials using `docker inspect`, dumps the database and copies it to a user-specified location, as well as removing backup dumps older than N days.
+
+**Get Email Notification of Backup Status**
+Run `backup_notifier.py` on Nextcloud AIO container host machine, change variables in script to match what is required.
+
+This script checks the existence of backup folders matching current YYYYMMDD and emails a report to a user-specified email address.
