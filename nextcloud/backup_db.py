@@ -14,9 +14,13 @@ Date: 16-03-23
 
 import os
 import json
+import argparse
 from datetime import datetime
 
-BACKUP_DIR = '/mnt/backups/'  # Example
+parser = argparse.ArgumentParser()
+parser.add_argument('backup_dir')
+BACKUP_DIR = parser.parse_args().backup_dir
+
 LOG_FILE = BACKUP_DIR + 'log-db.txt'  # Example
 N_DAYS = 3
 

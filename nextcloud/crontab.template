@@ -2,7 +2,7 @@
 0 0 * * * /bin/bash nc-backup.sh
 
 # Remove outdated backups
-0 1 * * * python3 remove_outdated_backups.py
+0 1 * * * python3 remove_outdated_backups.py "BACKUP_DIR"
 
 # Backup database and remove outdated backups
-0 2 * * * python3 /backup_db.py
+0 2 * * * python3 backup_db.py "BACKUP_DIR"

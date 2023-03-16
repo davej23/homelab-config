@@ -7,10 +7,14 @@ Date: 16-03-23
 # Backup folders are named `backup_YYYYMMDD`
 
 import os
+import argparse
 from datetime import datetime
 
-BACKUP_PATH = '/mnt/backups/'  # Example
-LOG_FILE = BACKUP_PATH + 'log.txt'  # Example
+parser = argparse.ArgumentParser()
+parser.add_argument('backup_dir')
+BACKUP_DIR = parser.parse_args().backup_dir
+
+LOG_FILE = BACKUP_DIR + 'log.txt'  # Example
 N_DAYS = 3
 
 if not os.path.exists(LOG_FILE):
@@ -27,8 +31,8 @@ def update_log(message: str, log_file_path: str):
 
 update_log('', LOG_FILE)
 
-for backup_folder in os.listdir(BACKUP_PATH):
-    if os.path.isdir(BACKUP_PATH + backup_folder):
+for backup_folder in os.listdir(BACKUP_DIR):
+    if os.path.isdir(BACKUP_DIR + backup_folder):
 
         backup_date_str = backup_folder.split('_')[-1]
         backup_date = datetime.strptime(backup_date_str, '%Y%m%d')
@@ -45,4 +49,4 @@ for backup_folder in os.listdir(BACKUP_PATH):
         print(log_statement)
 
         if days_since_created > N_DAYS:
-            os.system(f'rm -r {BACKUP_PATH}{backup_folder}/*')
+            os.system(f'rm -r {BACKUP_DIR}{backup_folder}/*')
