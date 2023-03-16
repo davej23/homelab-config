@@ -15,3 +15,15 @@ If IP address is not static, see my other repository [here](https://github.com/d
 
 **Autorenew SSL certificates**
 When behind CloudFlare Proxy, certificates cannot autorenew. See my other repository [here](https://github.com/davej23/nextcloud-aio-cloudflare-proxy) to avoid this issue.
+
+# Additional Admin Things
+
+**Backup Nextcloud Data Folder**
+Run `nc-backup.sh` on Nextcloud AIO container host machine, change variables in script to match what is required.
+
+This script uses `rsync` to clone Nextcloud data directory to a user-specified backup location.
+
+**Backup Nextcloud Database**
+Run `backup_db.py` on Nextcloud AIO container host machine, change variables in script to match what is required.
+
+This script obtains the Nextcloud PostgreSQL database credentials using `docker inspect`, dumps the database and copies it to a user-specified location, as well as removing backup dumps older than N days.
