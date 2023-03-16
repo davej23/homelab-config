@@ -16,7 +16,7 @@ import os
 import json
 from datetime import datetime
 
-BACKUP_DIR = '/mnt/storage/nextcloud-backup/'  # Example
+BACKUP_DIR = '/mnt/backups/'  # Example
 LOG_FILE = BACKUP_DIR + 'log-db.txt'  # Example
 N_DAYS = 3
 
@@ -35,6 +35,10 @@ def update_log(message: str, log_file_path: str):
 # Update log to start new entry
 update_log('', LOG_FILE)
 update_log(f'--- DATABASE BACKUP - {datetime.now()} ---', LOG_FILE)
+
+# Enable Maintenance mode
+os.system('docker exec --user www-data -it nextcloud-aio-nextcloud php occ maintenance:mode --on')
+update_log('Maintenance mode enabled.', LOG_FILE)
 
 # Get database credentials
 db_inspect = json.loads(os.popen('docker inspect nextcloud-aio-database').read())
@@ -90,8 +94,8 @@ for file in os.listdir(BACKUP_DIR):
 
         days_since_created = (todays_date - backup_date).days
 
-        log_statement = f'Time {todays_date} - File {file} - \
-            Backup Date {backup_date} - Days since backup {days_since_created} days'
+        log_statement = f'Time {todays_date} - File {file} - ' \
+            f'Backup Date {backup_date} - Days since backup {days_since_created} days'
 
         update_log(log_statement, LOG_FILE)
 
@@ -99,5 +103,9 @@ for file in os.listdir(BACKUP_DIR):
 
         if days_since_created > N_DAYS:
             os.system(f'rm {BACKUP_DIR}{file}')
+
+# Disable Maintenance mode
+os.system('docker exec --user www-data -it nextcloud-aio-nextcloud php occ maintenance:mode --off')
+update_log('Maintenance mode disabled.', LOG_FILE)
 
 update_log('Outdated backup check complete. \nBackup complete.', LOG_FILE)

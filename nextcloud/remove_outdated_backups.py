@@ -9,7 +9,7 @@ Date: 16-03-23
 import os
 from datetime import datetime
 
-BACKUP_PATH = '/mnt/storage/nextcloud-backup/'  # Example
+BACKUP_PATH = '/mnt/backups/'  # Example
 LOG_FILE = BACKUP_PATH + 'log.txt'  # Example
 N_DAYS = 3
 
@@ -37,8 +37,8 @@ for backup_folder in os.listdir(BACKUP_PATH):
 
         days_since_created = (todays_date - backup_date).days
 
-        log_statement = f'Time {todays_date} - Folder {backup_folder} - \
-            Backup Date {backup_date} - Days since backup {days_since_created} days'
+        log_statement = f'Time {todays_date} - Folder {backup_folder} - ' \
+            f'Backup Date {backup_date} - Days since backup {days_since_created} days'
 
         update_log(log_statement, LOG_FILE)
 
