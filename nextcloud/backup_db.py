@@ -21,6 +21,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('backup_dir')
 BACKUP_DIR = parser.parse_args().backup_dir
 
+if BACKUP_DIR[-1] != '/':
+    BACKUP_DIR += '/'
+
 LOG_FILE = BACKUP_DIR + 'log-db.txt'  # Example
 N_DAYS = 3
 
@@ -77,13 +80,13 @@ update_log('.pgpass file acquired.', LOG_FILE)
 os.system(f'docker exec \
     --user postgres \
     nextcloud-aio-database \
-        pg_dump {POSTGRES_DB} -h nextcloud-aio-database -U {POSTGRES_USER} -w')
+        pg_dump {POSTGRES_DB} -h nextcloud-aio-database -U {POSTGRES_USER} -w >> {BACKUP_DIR}latest_backup.sql')
 
 update_log('pg_dump finished running.', LOG_FILE)
 
 # Copy database dump to another location
-os.system(f'cp /var/lib/docker/volumes/nextcloud_aio_database_dump/_data/database-dump.sql \
-    {BACKUP_DIR}/database-dump-`date +"%Y%m%d"`.sql')
+os.system(f'mv {BACKUP_DIR}latest_backup.sql \
+    {BACKUP_DIR}database-dump-`date +"%Y%m%d"`.sql')
 
 update_log('Database dump has been moved to backup location.', LOG_FILE)
 
