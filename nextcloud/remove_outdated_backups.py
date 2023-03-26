@@ -49,4 +49,4 @@ for backup_folder in os.listdir(BACKUP_DIR):
         print(log_statement)
 
         if days_since_created > N_DAYS:
-            os.system(f'rm -r {BACKUP_DIR}{backup_folder}/*')
+            os.system(f'rm -r {BACKUP_DIR}{backup_folder}/')

@@ -10,6 +10,9 @@
 
 ## Follow-Up Configuration
 
+**Set Default Phone Region**
+`sudo docker exec --user www-data nextcloud-aio-nextcloud php occ config:system:set default_phone_region --value="yourvalue"`
+
 **Auto-Update CloudFlare DNS Entry IP**
 If IP address is not static, see my other repository [here](https://github.com/davej23/cloudflare-dynamic-dns) to autoupdate DNS entry to match current system IP address.
 
