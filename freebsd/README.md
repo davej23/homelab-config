@@ -35,4 +35,8 @@ pkg install vscode signal-desktop
 sysrc sound_load="YES"
 
 # Move .zshrc to ~/.zshrc
+
+# Disable kwallet, remove kwalletmanager
+
+# Install gnome-keyring and gnome-keyring-sharp
 ```
