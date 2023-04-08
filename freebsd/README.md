@@ -5,7 +5,7 @@
 
 freebsd-update fetch update
 
-pkg install xorg plasma5-plasma konsole dolphin sddm zsh git drm-kmod firefox doas
+pkg install xorg plasma5-plasma konsole dolphin sddm zsh git drm-kmod firefox doas vim
 
 cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf
 
@@ -33,4 +33,6 @@ pkg install virtual_oss
 
 pkg install vscode signal-desktop
 sysrc sound_load="YES"
+
+# Move .zshrc to ~/.zshrc
 ```
