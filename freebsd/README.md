@@ -7,6 +7,8 @@ freebsd-update fetch update
 
 pkg install xorg plasma5-plasma konsole dolphin sddm zsh git drm-kmod firefox doas
 
+cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf
+
 pw groupmod video -m USER
 
 pw groupmod wheel -m USER
