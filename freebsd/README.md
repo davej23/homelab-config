@@ -40,3 +40,7 @@ sysrc sound_load="YES"
 
 # Install gnome-keyring and gnome-keyring-sharp
 ```
+
+For GitHub credential management, one way is:
+- `git config --global credential.helper store`
+- Create `~/.git-credentials` file with format `https://user:name@github.com`
