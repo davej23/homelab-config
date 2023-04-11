@@ -1,0 +1,5 @@
+[
+	{ "keys": ["ctrl+shift+\\"], "command": "toggle_terminus_panel"},
+	{ "keys": ["ctrl+alt+s"], "command": "save_all", "args": { "async": true } },
+	{ "keys": ["ctrl+s"], "command": "save_all", "args": { "async": true } },
+]
